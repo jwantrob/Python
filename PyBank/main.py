@@ -19,12 +19,16 @@ with open(csvpath, newline='') as csvfile:
     #start a total month variable = 0
     total_gain_loss = 0
     total_month = 0
-
-    #add second column value in each row to total_gain_loss
+    list_gain_loss = []
+    list_date = []
+    #add monthly_gain_loss value in each row to total_gain_loss
     #add 1 to each row to get total months (each row = 1 month of data)
     for row in csvreader:
-        total_gain_loss = total_gain_loss + int(row[1])
+        monthly_gain_loss = int(row[1])
+        total_gain_loss = total_gain_loss + monthly_gain_loss
         total_month = total_month + 1
+        list_gain_loss.append(row[1])
+        list_date.append(row[0])
     #Print Total losses/gains and total months
     print(f'Total Months: {total_month}')
     print(f'Total: ${total_gain_loss}')
