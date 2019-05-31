@@ -32,35 +32,45 @@ with open(csvpath, newline='') as csvfile:
         #create lists for gain_loss and dates to iterate through for average and min/max
         list_gain_loss.append(row[1])
         list_date.append(row[0])
-    #Print Total losses/gains and total months
-    print(f'Total Months: {total_month}')
-    print(f'Total: ${total_gain_loss}')
+#Print Total losses/gains and total months
+print(f'Total Months: {total_month}')
+print(f'Total: ${total_gain_loss}')
 
-    #create a variable to hold monthly change
-    total_change = 0
-    #create a dictionary to hold date and monthly change
-    date_monthly_change = {}
-    #compare items in gain_loss list and list_date to find average change and greatest/least profit. Remember list index starts at 0.
-    for i in range(1,len(list_gain_loss)):
-        monthly_change = int(list_gain_loss[i]) - int(list_gain_loss[i-1])
-        total_change = total_change + monthly_change
-        #append to dictionary the monthly change by date calculated above.
-        date_monthly_change.update({list_date[i] : monthly_change})
-        #print(date_monthly_change)
-    #create average monthly change by taking total change and dividing by length of list_gain_loss-1 (since we subtracted the values there is 1 less to divide from)
-    average_change = total_change/(len(list_gain_loss)-1)
-    #round to 2 decimal places
-    round_average_change = round(average_change,2)
-    print(f'Average Change: ${round_average_change}')
-    #find the min and max in dictionary date_monthly_change used: http://www.trytoprogram.com/python-programming/python-dictionary/#maxmin
-    monthly_max_date = max(date_monthly_change.keys(), key=(lambda a: date_monthly_change[a]))
-    monthly_max_value = date_monthly_change[monthly_max_date]
-    print(monthly_max_date)
-    print(monthly_max_value)
-    monthly_min_date = min(date_monthly_change.keys(), key=(lambda a: date_monthly_change[a]))
-    monthly_min_value = date_monthly_change[monthly_min_date]
-    print(monthly_min_date)
-    print(monthly_min_value)
+#create a variable to hold monthly change
+total_change = 0
+#create a dictionary to hold date and monthly change
+date_monthly_change = {}
+
+#compare items in gain_loss list and list_date to find average change and greatest/least profit. Remember list index starts at 0.
+for i in range(1,len(list_gain_loss)):
+    monthly_change = int(list_gain_loss[i]) - int(list_gain_loss[i-1])
+    total_change = total_change + monthly_change
+    #append to dictionary the monthly change by date calculated above.
+    date_monthly_change.update({list_date[i] : monthly_change})
+    #print(date_monthly_change)
+#create average monthly change by taking total change and dividing by length of list_gain_loss-1 (since we subtracted the values there is 1 less to divide from)
+average_change = total_change/(len(list_gain_loss)-1)
+#round to 2 decimal places
+round_average_change = round(average_change,2)
+print(f'Average Change: ${round_average_change}')
+#find the min and max in dictionary date_monthly_change used: http://www.trytoprogram.com/python-programming/python-dictionary/#maxmin
+#monthly_max_date = max(date_monthly_change.keys(), key=(lambda a:date_monthly_change[a]))
+#.get looks for the largest or smallest value and returns the key in the dictionary
+monthly_max_date = max(date_monthly_change, key=date_monthly_change.get)
+#print(f'max_date: {max_date}')
+#max_val = date_monthly_change[max_date]
+#print(f'max_val: {max_val}')
+#monthly_max_date_test = max(date_monthly_change, key = (lambda a: date_monthly_change[a]))
+#print(monthly_max_date_test)
+#then you can use that key to return the max/min value
+monthly_max_value = date_monthly_change[monthly_max_date]
+print(monthly_max_date)
+print(monthly_max_value)
+#monthly_min_date = min(date_monthly_change.keys(), key=(lambda a: date_monthly_change[a]))
+monthly_min_date = min(date_monthly_change, key = date_monthly_change.get)
+monthly_min_value = date_monthly_change[monthly_min_date]
+print(monthly_min_date)
+print(monthly_min_value)
         
 
        
