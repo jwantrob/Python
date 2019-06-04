@@ -57,7 +57,7 @@ round_average_change = round(average_change,2)
 print(f'Average Change: ${round_average_change}')
 #find the min and max in dictionary date_monthly_change used: http://www.trytoprogram.com/python-programming/python-dictionary/#maxmin
 #monthly_max_date = max(date_monthly_change.keys(), key=(lambda a:date_monthly_change[a]))
-#.get looks for the largest or smallest value and returns the key in the dictionary
+#.get looks for the largest or smallest value and returns the key in the dictionary used: https://stackoverflow.com/questions/26871866/print-highest-value-in-dict-with-key
 monthly_max_date = max(date_monthly_change, key=date_monthly_change.get)
 #print(f'max_date: {max_date}')
 #max_val = date_monthly_change[max_date]
