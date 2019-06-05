@@ -27,7 +27,8 @@ with open(csvpath, newline='') as csvfile:
         total_vote = total_vote + 1
         candidate_list_long.append(row[2])
 
-#count votes by candidate.  Found help usinng https://stackoverflow.com/questions/2600191/how-can-i-count-the-occurrences-of-a-list-item        
+#count votes by candidate.  Found help usinng https://stackoverflow.com/questions/2600191/how-can-i-count-the-occurrences-of-a-list-item    
+# set creates the deduped candidate list and then counts instances. Final output is a nested list of each candidate and their total vote count    
 candidate_list = [[x,candidate_list_long.count(x)] for x in set(candidate_list_long)]
 #print(candidate_list)
 #print(len(candidate_list))
@@ -53,9 +54,11 @@ with open(output_path, 'w') as txtfile:
         candidate_list[i].append(vote_percent)
         print(f'{candidate_list[i][0]}: {candidate_list[i][2]}% ({candidate_list[i][1]})')
         txtfile.write(f'{candidate_list[i][0]}: {candidate_list[i][2]}% ({candidate_list[i][1]})\n')
+        #find the candidate with the largest percent of the vote using an if statement and find the winner
         if vote_percent > largest_percent_vote:
             largest_percent_vote = vote_percent
             winner = candidate_list[i][0]
+    #once for loop is complete print out winner and add to text file
     print('-------------')
     print(f'Winner: {winner}')
     print('-------------')
