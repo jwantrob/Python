@@ -52,6 +52,7 @@ with open(output_path, 'w') as txtfile:
         #candidate_list_per.append(vote_percent)
         #append this to each nested list
         candidate_list[i].append(vote_percent)
+        #print the candidate with the total vote and percent of vote and write to text file
         print(f'{candidate_list[i][0]}: {candidate_list[i][2]}% ({candidate_list[i][1]})')
         txtfile.write(f'{candidate_list[i][0]}: {candidate_list[i][2]}% ({candidate_list[i][1]})\n')
         #find the candidate with the largest percent of the vote using an if statement and find the winner
